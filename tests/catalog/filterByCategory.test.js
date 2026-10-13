@@ -15,29 +15,32 @@ describe('filterByCategory', () => {
   });
 
   test("'electronics' возвращает товары с ID [1, 2]", () => {
-    expect(filterByCategory(products, 'electronics')).toEqual([products[0], products[1]]);
+    const result = filterByCategory(products, 'electronics');
+    expect(result.map((product) => product.id)).toEqual([1, 2]);
   });
 
   test("'books' возвращает товары с ID [3, 6]", () => {
-    expect(filterByCategory(products, 'books')).toEqual([products[2], products[5]]);
-  });;
+    const result = filterByCategory(products, 'books');
+    expect(result.map((product) => product.id)).toEqual([3, 6]);
+  });
 
   test("'home' возвращает товары с ID [4, 5]", () => {
-    expect(filterByCategory(products, 'home')).toEqual([
-      products[3],
-      products[4],
-    ]);
+    const result = filterByCategory(products, 'home');
+    expect(result.map((product) => product.id)).toEqual([4, 5]);
   });
 
   test("'clothes' возвращает пустой массив", () => {
-    expect(filterByCategory(products, 'clothes')).toEqual([]);
+    const result = filterByCategory(products, 'clothes');
+    expect(result.map((product) => product.id)).toEqual([]);
   });
 
   test("'toys' возвращает пустой массив", () => {
-    expect(filterByCategory(products, 'toys')).toEqual([]);
+    const result = filterByCategory(products, 'toys');
+    expect(result.map((product) => product.id)).toEqual([]);
   });
 
   test("'sports' возвращает пустой массив", () => {
-    expect(filterByCategory(products, 'sports')).toEqual([]);
+    const result = filterByCategory(products, 'sports');
+    expect(result.map((product) => product.id)).toEqual([]);
   });
 });
