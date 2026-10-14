@@ -3,18 +3,37 @@ function notImplemented() {
 }
 
 function addToCart(productsArr, category, quantity) {
-  const product = productsArr.find(item => item.id === category.id);
+  const product = productsArr.find((item) => item.id === category.id);
+  const total = (product ? product.quantity : 0) + quantity;
 
-  if (!product) {
-    productsArr.push({ ...category, quantity });
+  if (quantity <= 0 || total > category.stock) {
+    throw new RangeError('Invalid quantity');
+  }
+
+  if (product) {
+    product.quantity = total;
   } else {
-    product.quantity += quantity;
+    productsArr.push({ ...category, quantity });
   }
 
   return productsArr;
 }
 
-function changeQuantity() { return notImplemented(); }
+function changeQuantity(productCart, productId, productQuantiti) {
+  const addProduct = productCart.find((item) => item.id === productId);
+
+  if (!addProduct) return productCart;
+
+  if (productQuantiti <= 0 || addProduct?.stock < productQuantiti) {
+    throw new RangeError('Invalid quantity');
+  }
+
+  if (addProduct) {
+    addProduct.quantity = productQuantiti;
+  }
+
+  return productCart;
+}
 
 function removeFromCart() { return notImplemented(); }
 
