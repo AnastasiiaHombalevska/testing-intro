@@ -39,7 +39,9 @@ function removeFromCart(productCart, productId) {
   return productCart.filter((item) => item.id !== productId);
 }
 
-function calculateCartSubtotal() { return notImplemented(); }
+function calculateCartSubtotal(productCart) {
+  return productCart.reduce((acc, item) => acc + item.quantity * item.price, 0);
+}
 
 function calculateOrderTotal() { return notImplemented(); }
 
